@@ -1,5 +1,6 @@
 import 'package:green_io/src/model/cart_item.dart';
 import 'package:green_io/src/model/item.dart';
+import 'package:green_io/src/model/order.dart';
 import 'package:green_io/src/model/user.dart';
 
 Item apple = Item(
@@ -257,4 +258,21 @@ class AppData {
     name: 'vini',
     phone: '(51) 9 9515-6466',
   );
+
+  static final List<Order> orders = [
+    Order(
+      id: 1,
+      createdDateTime: DateTime.parse('2024-11-25 23:03:00'),
+      overdueDateTime: DateTime.parse('2024-11-26 00:03:00'),
+      items: [
+        CartItem(
+          item: mango,
+          quantity: 5,
+        ),
+      ],
+      stats: 'pending_payment',
+      copyAndPaste: 'asdjh412312jsda',
+      total: 34.0,
+    ),
+  ];
 }

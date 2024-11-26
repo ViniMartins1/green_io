@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_io/src/config/app_colors.dart';
 import 'package:green_io/src/pages/cart/cart_tab.dart';
 import 'package:green_io/src/pages/home/home_tab.dart';
+import 'package:green_io/src/pages/orders/orders_tab.dart';
 import 'package:green_io/src/pages/profile/profile_tab.dart';
 
 class BasePage extends StatefulWidget {
@@ -21,11 +22,11 @@ class _BasePageState extends State<BasePage> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
-        children: [
-          const HomeTab(),
-          const CartTab(),
-          Container(color: Colors.blue),
-          const ProfileTab(),
+        children: const [
+          HomeTab(),
+          CartTab(),
+          OrdersTab(),
+          ProfileTab(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
