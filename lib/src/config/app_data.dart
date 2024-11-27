@@ -262,8 +262,8 @@ class AppData {
   static final List<Order> orders = [
     Order(
       id: 1,
-      createdDateTime: DateTime.parse('2024-11-25 23:03:00'),
-      overdueDateTime: DateTime.parse('2024-11-26 00:03:00'),
+      createdDateTime: DateTime.parse('2024-11-25 23:03:00.000'),
+      overdueDateTime: DateTime.parse('2024-11-26 00:03:00.110'),
       items: [
         CartItem(
           item: mango,
