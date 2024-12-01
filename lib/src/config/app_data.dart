@@ -262,17 +262,35 @@ class AppData {
   static final List<Order> orders = [
     Order(
       id: 1,
-      createdDateTime: DateTime.parse('2024-11-25 23:03:00.000'),
-      overdueDateTime: DateTime.parse('2024-11-26 00:03:00.110'),
+      createdDateTime: DateTime.parse('2025-11-25 23:03:00.000'),
+      overdueDateTime: DateTime.parse('2025-11-26 00:03:00.110'),
       items: [
         CartItem(
           item: mango,
           quantity: 5,
         ),
+        CartItem(
+          item: watermelon,
+          quantity: 3,
+        ),
       ],
-      stats: 'pending_payment',
+      stats: 'preparing_purchase',
       copyAndPaste: 'asdjh412312jsda',
-      total: 34.0,
+      total: (mango.price * 5) + (watermelon.price * 3),
+    ),
+    Order(
+      id: 2,
+      createdDateTime: DateTime.parse('2025-11-27 20:33:00.000'),
+      overdueDateTime: DateTime.parse('2025-11-26 21:33:00.110'),
+      items: [
+        CartItem(
+          item: watermelon,
+          quantity: 5,
+        ),
+      ],
+      stats: 'delivered',
+      copyAndPaste: 'asdjh412312jsda',
+      total: watermelon.price * 4,
     ),
   ];
 }
