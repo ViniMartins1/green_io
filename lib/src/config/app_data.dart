@@ -274,7 +274,7 @@ class AppData {
           quantity: 3,
         ),
       ],
-      stats: 'preparing_purchase',
+      stats: 'pending_payment',
       copyAndPaste: 'asdjh412312jsda',
       total: (mango.price * 5) + (watermelon.price * 3),
     ),

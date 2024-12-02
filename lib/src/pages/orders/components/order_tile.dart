@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_io/src/config/app_colors.dart';
 import 'package:green_io/src/model/cart_item.dart';
 import 'package:green_io/src/model/order.dart';
 import 'package:green_io/src/pages/orders/components/order_status.dart';
@@ -17,6 +18,7 @@ class OrderTile extends StatelessWidget {
           dividerColor: Colors.transparent,
         ),
         child: ExpansionTile(
+          expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           initiallyExpanded: order.stats == 'pending_payment',
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,6 +54,38 @@ class OrderTile extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Text.rich(
+              TextSpan(
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                  children: [
+                    const TextSpan(
+                      text: 'Total ',
+                    ),
+                    TextSpan(
+                      text: UtilsServices.priceToCurrency(order.total),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ]),
+            ),
+            Visibility(
+              visible: order.stats == 'pending_payment',
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: AppColors.appSwatchColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                onPressed: () {},
+                icon: const Icon(Icons.pix),
+                label: const Text('Ver QR Code Pix'),
               ),
             ),
           ],
