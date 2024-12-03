@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:green_io/src/config/app_colors.dart';
 import 'package:green_io/src/model/cart_item.dart';
 import 'package:green_io/src/model/order.dart';
 import 'package:green_io/src/pages/orders/components/order_status.dart';
+import 'package:green_io/src/pages/orders/components/payment_dialog.dart';
 import 'package:green_io/src/services/util_services.dart';
+import 'package:green_io/src/widgets/green_io_buttons.dart';
 
 class OrderTile extends StatelessWidget {
   final Order order;
@@ -75,17 +76,13 @@ class OrderTile extends StatelessWidget {
             ),
             Visibility(
               visible: order.stats == 'pending_payment',
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: AppColors.appSwatchColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+              child: GreenIOIconButton(
+                label: 'Ver QR Code PIX',
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => PaymentDialog(order: order),
                 ),
-                onPressed: () {},
-                icon: const Icon(Icons.pix),
-                label: const Text('Ver QR Code Pix'),
+                icon: Icons.pix_rounded,
               ),
             ),
           ],

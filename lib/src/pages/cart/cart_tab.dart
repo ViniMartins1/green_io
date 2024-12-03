@@ -1,10 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:green_io/src/config/app_colors.dart';
 import 'package:green_io/src/config/app_data.dart';
 import 'package:green_io/src/model/cart_item.dart';
-import 'package:green_io/src/widgets/green_io_buttons.dart';
 import 'package:green_io/src/pages/cart/components/cart_tile.dart';
+import 'package:green_io/src/pages/orders/components/payment_dialog.dart';
 import 'package:green_io/src/services/util_services.dart';
+import 'package:green_io/src/widgets/green_io_buttons.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
@@ -83,6 +86,13 @@ class _CartTabState extends State<CartTab> {
                   label: 'Ok',
                   onPressed: () async {
                     bool? result = await showOrderConfirmation();
+
+                    if (result ?? false) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => PaymentDialog(order: AppData.orders.first),
+                      );
+                    }
                   },
                 ),
               ],

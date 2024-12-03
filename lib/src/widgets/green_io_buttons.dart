@@ -29,10 +29,12 @@ class GreenIOButton extends StatelessWidget {
 class GreenIOOutlinedButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
+  final IconData? icon;
   const GreenIOOutlinedButton({
     super.key,
     required this.label,
     required this.onPressed,
+    this.icon,
   });
 
   @override
@@ -49,14 +51,59 @@ class GreenIOOutlinedButton extends StatelessWidget {
             color: AppColors.appSwatchColor,
           ),
         ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 18,
-            color: AppColors.appSwatchColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Visibility(
+              visible: icon != null,
+              child: Row(
+                children: [
+                  Icon(icon),
+                  const SizedBox(width: 4),
+                ],
+              ),
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 18,
+                color: AppColors.appSwatchColor,
+              ),
+            ),
+          ],
+        ),
+        onPressed: () async => onPressed.call(),
+      ),
+    );
+  }
+}
+
+class GreenIOIconButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onPressed;
+  final IconData icon;
+  const GreenIOIconButton({
+    super.key,
+    required this.label,
+    required this.onPressed,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: AppColors.appSwatchColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
           ),
         ),
         onPressed: () async => onPressed.call(),
+        icon: Icon(icon),
+        label: Text(label),
       ),
     );
   }
