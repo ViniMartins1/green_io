@@ -22,6 +22,7 @@ class _CartTabState extends State<CartTab> {
   void removeItem(CartItem cartItem) {
     setState(() {
       cartItems.remove(cartItem);
+      UtilsServices.showToast(message: '${cartItem.item.name} was removed from the cart.');
     });
   }
 
@@ -92,6 +93,8 @@ class _CartTabState extends State<CartTab> {
                         context: context,
                         builder: (context) => PaymentDialog(order: AppData.orders.first),
                       );
+                    } else {
+                      UtilsServices.showToast(message: 'Order not confirmed', isError: true);
                     }
                   },
                 ),

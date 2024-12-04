@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:green_io/src/config/app_colors.dart';
 
@@ -72,7 +71,6 @@ class _QuantityButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
   const _QuantityButton({
-    super.key,
     required this.color,
     required this.icon,
     required this.onPressed,
