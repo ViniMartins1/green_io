@@ -34,7 +34,12 @@ class _BasePageState extends State<BasePage> {
         onTap: (value) {
           setState(() {
             _currentIndex = value;
-            _pageController.jumpToPage(_currentIndex);
+            // _pageController.jumpToPage(_currentIndex);
+            _pageController.animateToPage(
+              _currentIndex,
+              duration: const Duration(milliseconds: 600),
+              curve: Curves.ease,
+            );
           });
         },
         unselectedItemColor: AppColors.grey,

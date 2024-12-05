@@ -86,6 +86,8 @@ class _CartTabState extends State<CartTab> {
                 GreenIOButton(
                   label: 'Ok',
                   onPressed: () async {
+                    if (cartItems.isEmpty) return;
+
                     bool? result = await showOrderConfirmation();
 
                     if (result ?? false) {

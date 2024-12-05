@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:green_io/src/config/app_colors.dart';
 
 class CategoryTile extends StatelessWidget {

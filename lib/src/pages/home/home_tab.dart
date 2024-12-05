@@ -39,10 +39,12 @@ class _HomeTabState extends State<HomeTab> {
             child: GestureDetector(
               onTap: () {},
               child: Badge(
-                  backgroundColor: AppColors.contrastColor,
-                  label: const Text('2'),
-                  // alignment: Alignment.centerRight,
-                  child: const Icon(Icons.shopping_cart_rounded)),
+                backgroundColor: AppColors.contrastColor,
+                label: const Text('2'),
+                child: const Icon(
+                  Icons.shopping_cart_rounded,
+                ),
+              ),
             ),
           )
         ],

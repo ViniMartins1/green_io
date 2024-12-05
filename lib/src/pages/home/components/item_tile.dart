@@ -4,9 +4,22 @@ import 'package:green_io/src/model/item.dart';
 import 'package:green_io/src/pages/product/product_detail_page.dart';
 import 'package:green_io/src/services/util_services.dart';
 
-class ItemTile extends StatelessWidget {
+class ItemTile extends StatefulWidget {
   final Item item;
   const ItemTile({super.key, required this.item});
+
+  @override
+  State<ItemTile> createState() => _ItemTileState();
+}
+
+class _ItemTileState extends State<ItemTile> {
+  IconData tileIcon = Icons.add_shopping_cart_outlined;
+
+  Future<void> switchIcon() async {
+    setState(() => tileIcon = Icons.check_rounded);
+    await Future.delayed(const Duration(seconds: 1));
+    setState(() => tileIcon = Icons.add_shopping_cart_rounded);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +39,10 @@ class ItemTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    child: Image.asset(item.imgUrl),
+                    child: Image.asset(widget.item.imgUrl),
                   ),
                   Text(
-                    item.name,
+                    widget.item.name,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -38,7 +51,7 @@ class ItemTile extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        UtilsServices.priceToCurrency(item.price),
+                        UtilsServices.priceToCurrency(widget.item.price),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -46,7 +59,7 @@ class ItemTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '/${item.unit}',
+                        '/${widget.item.unit}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
@@ -61,29 +74,35 @@ class ItemTile extends StatelessWidget {
           ),
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => ProductDetailPage(product: item),
+              builder: (context) => ProductDetailPage(product: widget.item),
             ),
           ),
         ),
         Positioned(
           top: 4,
           right: 4,
-          child: GestureDetector(
-            onTap: () {},
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.appSwatchColor,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+            child: Material(
+              child: InkWell(
+                onTap: () async {
+                  await switchIcon();
+                },
+                child: Ink(
+                  decoration: BoxDecoration(
+                    color: AppColors.appSwatchColor,
+                  ),
+                  height: 40,
+                  width: 35,
+                  child: Icon(
+                    tileIcon,
+                    size: 20,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              height: 40,
-              width: 35,
-              child: const Icon(
-                Icons.add_shopping_cart_rounded,
-                size: 20,
-                color: Colors.white,
               ),
             ),
           ),
