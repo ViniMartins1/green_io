@@ -1,10 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:green_io/src/widgets/green_io_buttons.dart';
-import 'package:green_io/src/widgets/green_io_field.dart';
+import 'package:green_io/src/config/app_colors.dart';
 import 'package:green_io/src/pages/auth/register_page.dart';
 import 'package:green_io/src/pages/base/base_page.dart';
-import 'package:green_io/src/config/app_colors.dart';
+import 'package:green_io/src/widgets/app_name_widget.dart';
+import 'package:green_io/src/widgets/green_io_buttons.dart';
+import 'package:green_io/src/widgets/green_io_field.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -24,36 +25,7 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text.rich(
-                      TextSpan(
-                        style: TextStyle(
-                          fontSize: 40,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'green',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '.',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'io',
-                            style: TextStyle(
-                              color: Colors.amber,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    const AppNameWidget(fontSize: 40),
                     SizedBox(
                       height: 30,
                       child: DefaultTextStyle(

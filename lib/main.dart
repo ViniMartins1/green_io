@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:green_io/src/pages/auth/login_page.dart';
 import 'package:green_io/src/config/app_colors.dart';
+import 'package:green_io/src/pages/splash/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Green.io',
       theme: ThemeData(
         primarySwatch: Colors.green,
         scaffoldBackgroundColor: AppColors.backgroundColor,
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 51, 158, 54)),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: const SplashPage(),
     );
   }
 }
