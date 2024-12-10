@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:green_io/src/config/app_colors.dart';
-import 'package:green_io/src/pages/splash/splash_page.dart';
+import 'package:green_io/src/routes/app_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Green.io',
       theme: ThemeData(
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 51, 158, 54)),
         useMaterial3: true,
       ),
-      home: const SplashPage(),
+      initialRoute: PageRoutes.splashRoute,
+      getPages: AppPages.pages,
     );
   }
 }

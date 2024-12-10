@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:green_io/src/config/app_colors.dart';
+import 'package:green_io/src/routes/app_pages.dart';
 import 'package:green_io/src/widgets/green_io_buttons.dart';
 import 'package:green_io/src/widgets/green_io_field.dart';
-import 'package:green_io/src/config/app_colors.dart';
 import 'package:green_io/src/widgets/return_button.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -66,7 +68,9 @@ class RegisterPage extends StatelessWidget {
                         ),
                         GreenIOButton(
                           label: 'Create account',
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.offNamed(PageRoutes.loginRoute);
+                          },
                         ),
                       ],
                     ),

@@ -1,8 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:green_io/src/config/app_colors.dart';
-import 'package:green_io/src/pages/auth/register_page.dart';
-import 'package:green_io/src/pages/base/base_page.dart';
+import 'package:green_io/src/routes/app_pages.dart';
 import 'package:green_io/src/widgets/app_name_widget.dart';
 import 'package:green_io/src/widgets/green_io_buttons.dart';
 import 'package:green_io/src/widgets/green_io_field.dart';
@@ -58,20 +58,30 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const GreenIOField(
+                    GreenIOField(
                       label: 'Email',
                       icon: Icons.email_rounded,
+                      validator: (email) {
+                        if (email == null || email.isEmpty) return 'Type your email.';
+
+                        if (!email.isEmail) return 'Type a valid email.';
+
+                        return null;
+                      },
                     ),
-                    const GreenIOField(
+                    GreenIOField(
                       label: 'Password',
                       icon: Icons.lock_rounded,
                       password: true,
+                      validator: (password) {
+                        if (password == null || password.isEmpty) return 'Type your password.';
+
+                        return null;
+                      },
                     ),
                     GreenIOButton(
                       label: 'Enter',
-                      onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const BasePage(),
-                      )),
+                      onPressed: () => Get.offNamed(PageRoutes.baseRoute),
                     ),
                     Align(
                       alignment: Alignment.centerRight,
@@ -107,11 +117,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     GreenIOOutlinedButton(
                       label: 'Sign up',
-                      onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const RegisterPage(),
-                        ),
-                      ),
+                      onPressed: () => Get.toNamed(PageRoutes.registerRoute),
                     ),
                   ],
                 ),
