@@ -4,7 +4,8 @@ import 'package:green_io/src/config/app_colors.dart';
 class GreenIOButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
-  const GreenIOButton({super.key, required this.label, required this.onPressed});
+  final bool isLoading;
+  const GreenIOButton({super.key, required this.label, required this.onPressed, this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,12 @@ class GreenIOButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
           ),
         ),
-        child: Text(
-          label,
-          style: const TextStyle(fontSize: 18),
-        ),
+        child: isLoading
+            ? const CircularProgressIndicator()
+            : Text(
+                label,
+                style: const TextStyle(fontSize: 18),
+              ),
         onPressed: () => onPressed.call(),
       ),
     );
@@ -29,11 +32,13 @@ class GreenIOButton extends StatelessWidget {
 class GreenIOOutlinedButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
+  final bool isLoading;
   final IconData? icon;
   const GreenIOOutlinedButton({
     super.key,
     required this.label,
     required this.onPressed,
+    this.isLoading = false,
     this.icon,
   });
 
@@ -51,27 +56,29 @@ class GreenIOOutlinedButton extends StatelessWidget {
             color: AppColors.appSwatchColor,
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Visibility(
-              visible: icon != null,
-              child: Row(
+        child: isLoading
+            ? const CircularProgressIndicator()
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(icon),
-                  const SizedBox(width: 4),
+                  Visibility(
+                    visible: icon != null,
+                    child: Row(
+                      children: [
+                        Icon(icon),
+                        const SizedBox(width: 4),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: AppColors.appSwatchColor,
+                    ),
+                  ),
                 ],
               ),
-            ),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 18,
-                color: AppColors.appSwatchColor,
-              ),
-            ),
-          ],
-        ),
         onPressed: () async => onPressed.call(),
       ),
     );
@@ -81,11 +88,13 @@ class GreenIOOutlinedButton extends StatelessWidget {
 class GreenIOIconButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
+  final bool isLoading;
   final IconData icon;
   const GreenIOIconButton({
     super.key,
     required this.label,
     required this.onPressed,
+    this.isLoading = false,
     required this.icon,
   });
 
@@ -101,9 +110,9 @@ class GreenIOIconButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
           ),
         ),
-        onPressed: () async => onPressed.call(),
-        icon: Icon(icon),
-        label: Text(label),
+        onPressed: isLoading ? null : onPressed,
+        icon: isLoading ? const SizedBox.shrink() : Icon(icon),
+        label: isLoading ? const CircularProgressIndicator(color: Colors.white) : Text(label),
       ),
     );
   }

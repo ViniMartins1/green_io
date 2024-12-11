@@ -7,7 +7,7 @@ import 'package:green_io/src/pages/splash/splash_page.dart';
 abstract class AppPages {
   static final pages = <GetPage>[
     GetPage(name: PageRoutes.splashRoute, page: () => const SplashPage()),
-    GetPage(name: PageRoutes.loginRoute, page: () => const LoginPage()),
+    GetPage(name: PageRoutes.loginRoute, page: () => LoginPage()),
     GetPage(name: PageRoutes.registerRoute, page: () => const RegisterPage()),
     GetPage(name: PageRoutes.baseRoute, page: () => const BasePage()),
   ];

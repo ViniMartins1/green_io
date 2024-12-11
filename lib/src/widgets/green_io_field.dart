@@ -10,6 +10,7 @@ class GreenIOField extends StatefulWidget {
   final String? initialValue;
   final bool readOnly;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
   const GreenIOField({
     super.key,
     required this.label,
@@ -19,6 +20,7 @@ class GreenIOField extends StatefulWidget {
     this.initialValue,
     this.validator,
     this.readOnly = false,
+    this.controller,
   });
 
   @override
@@ -45,6 +47,7 @@ class _GreenIOFieldState extends State<GreenIOField> {
         inputFormatters: widget.formatter == null ? const [] : _getFormatter(widget.formatter),
         obscureText: !showPassword,
         validator: widget.validator,
+        controller: widget.controller,
         decoration: InputDecoration(
           labelText: widget.label,
           prefixIcon: Icon(widget.icon),

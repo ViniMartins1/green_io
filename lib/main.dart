@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'package:green_io/src/config/app_colors.dart';
+import 'package:green_io/src/pages/auth/auth_controller.dart';
 import 'package:green_io/src/routes/app_pages.dart';
 
 void main() {
+  Get.put(AuthController);
+
   runApp(const MyApp());
 }
 
